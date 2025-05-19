@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class KnifeType extends Model
+class MaterialType extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = ['name'];
+    protected $fillable = [ 'name'];
 
-    public function Knife():HasMany
+    public function knife():HasMany
     {
         return $this->hasMany(Knife::class);
     }

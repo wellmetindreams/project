@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Knives;
+use App\Models\Knife;
 use Illuminate\Http\Request;
 
 class KnifeController
@@ -34,7 +34,7 @@ class KnifeController
     /**
      * Display the specified resource.
      */
-    public function show(Knives $knife)
+    public function show(Knife $knife)
     {
         return view('knife.show');
     }
@@ -42,7 +42,7 @@ class KnifeController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Knives $knife)
+    public function edit(Knife $knife)
     {
         return view('knife.edit');
     }
@@ -58,7 +58,7 @@ class KnifeController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Knives $knife)
+    public function destroy(Knife $knife)
     {
         //
     }
