@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Knife;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\KnifeImage>
@@ -17,7 +18,10 @@ class KnifeImageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'image_path'=>fake()->imageUrl(),
+            'position'=>function(array $attributes) {
+                return Knife::find($attributes['knife_id'])->images()->count()+1;
+            }
         ];
     }
 }

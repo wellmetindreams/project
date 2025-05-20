@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\KnifeType>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Country>
  */
-class KnifeTypeFactory extends Factory
+class CountryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,8 @@ class KnifeTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=>fake()->randomElement(['bread_knife','boning_knife','chef_knife','cleaver','nakiri_knife','paring_knife','santoku_knife','utility_knife'])
+            'name'=>$this-fake()->unique()->country(),
+            'code'=>strtoupper($this->faker->unique()->lexify('???')),
         ];
     }
 }

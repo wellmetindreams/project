@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('butt_thickness');
             $table->integer('weight');
             $table->string('material');
-            $table->string('country');
+            $table->foreignId('country_id')->constrained('countries');
             $table->longText('description');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

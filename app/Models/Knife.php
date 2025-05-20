@@ -56,4 +56,10 @@ class Knife extends Model
     {
         return $this->belongsTo(MaterialType::class);
     }
+
+    public function country(): BelongsTo
+
+    {
+        return $this->belongsTo(Country::class);
+    }
 }
