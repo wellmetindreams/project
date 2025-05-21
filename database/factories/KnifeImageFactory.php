@@ -19,9 +19,7 @@ class KnifeImageFactory extends Factory
     {
         return [
             'image_path'=>fake()->imageUrl(),
-            'position'=>function(array $attributes) {
-                return Knife::find($attributes['knife_id'])->images()->count()+1;
-            }
+            'position'=>1,
         ];
     }
 }

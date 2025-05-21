@@ -5,17 +5,17 @@
 <!-- /Home Slider -->
 <main>
     <x-search-form />
-      <!-- New Cars -->
+      <!-- New knives -->
       <section>
         <div class="container">
-          <h2>Latest Added Cars</h2>
-          <div class="car-items-listing">
-            @for($i=0; $i < 15; $i++)
-              <x-knife-item/>
-            @endfor
+          <h2>Все ножи</h2>
+          <div class="knife-items-listing">
+            @foreach($knifes as $knife)
+              <x-knife-item: $knife/>
+            @endforeach
           </div>
         </div>
       </section>
-      <!--/ New Cars -->
+      <!--/ New knives -->
     </main>
 </x-app-layout>

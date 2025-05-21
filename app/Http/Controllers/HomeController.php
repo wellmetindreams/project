@@ -11,16 +11,10 @@ class HomeController
 {
     public function index()
     {   
-        $knife = Knife::find(2);
-
-        $image = new KnifeImage(['image_path'=> 'something','position'=> '2']);
-
-        $knife -> images()->save($image);
-
-        Maker::factory()
-        ->has(Knife::factory()->count(3))
-        ->create();
-
-        return view('home.index');
+        $knifes = Knife::where('created_at', '<',now())
+        ->orderBy("created_at","desc")
+        ->limit(6)
+        ->get();
+        return view('home.index', ['knifes'=> $knifes]);
     }
 }

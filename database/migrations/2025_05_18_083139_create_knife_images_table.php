@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('knife_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('knife_id')->constrained('knife');
+            $table->foreignId('knife_id')->constrained('knife')->onDelete('cascade');
             $table->string('image_path');
             $table->integer('position');
         });

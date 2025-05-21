@@ -18,7 +18,7 @@ class CollectionFactory extends Factory
     public function definition(): array
     {
         return [
-            'maker_id'=> Maker::inRandomOrder()->first()->id()
+            'maker_id'=> Maker::inRandomOrder()->first()->id
         ];
     }
 }
