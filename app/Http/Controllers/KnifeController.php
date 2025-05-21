@@ -12,7 +12,17 @@ class KnifeController
      */
     public function index()
     {
-        return view('knife.index');
+        $knifes = Knife::with([
+            'maker',
+            'collection',
+            'material',
+            'knifeType',
+            'country',
+            'primaryImage'
+            ])->get();
+
+        return view('knife.index', compact('knifes'));
+
     }
 
     /**
@@ -65,6 +75,13 @@ class KnifeController
 
     public function search()
     {
-        return view('knife.search');
+        $query = KnifeController::where('created_at', '<', now())
+        ->orderBy('created_at','desc');
+
+        $knifeCount = $query->count();
+
+        $knifes = $query->limit(6)->get();
+
+        return view('knife.search', ['knifes' => $knifes, 'knifeCount' => $knifeCount]);
     }
 }

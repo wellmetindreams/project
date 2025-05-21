@@ -31,17 +31,17 @@ class Knife extends Model
         'description'
     ];
     
-    public function KnifeType(): BelongsTo
+    public function knifeType(): BelongsTo
     {
         return $this->belongsTo(KnifeType::class);
     }
 
-    public function Maker(): BelongsTo
+    public function maker(): BelongsTo
     {
         return $this->belongsTo(Maker::class);
     }
 
-    public function Collection(): BelongsTo
+    public function collection(): BelongsTo
     {
         return $this->belongsTo(Collection::class);
     }

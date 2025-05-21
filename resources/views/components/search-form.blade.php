@@ -1,12 +1,12 @@
-  <!-- Find a car form -->
-      <section class="find-a-car">
+  <!-- Find a knife form -->
+      <section class="find-a-knife">
         <div class="container">
           <form
-            action="{{ route('knife.search') }}"
+            action="{{ route('knife.search', '$knife') }}"
             method="GET"
-            class="find-a-car-form card flex p-medium"
+            class="find-a-knife-form card flex p-medium"
           >
-            <div class="find-a-car-inputs">
+            <div class="find-a-knife-inputs">
               <div>
                 <select id="makerSelect" name="maker_id">
                   <option value="">Maker</option>
@@ -299,7 +299,7 @@
                 </select>
               </div>
               <div>
-                <select name="car_type_id">
+                <select name="knife_type_id">
                   <option value="">Type</option>
                   <option value="2">Hatchback</option>
                   <option value="6">Jeep</option>
@@ -336,14 +336,14 @@
               </div>
             </div>
             <div>
-              <button type="button" class="btn btn-find-a-car-reset">
+              <button type="button" class="btn btn-find-a-knife-reset">
                 Reset
               </button>
-              <button class="btn btn-primary btn-find-a-car-submit">
+              <button class="btn btn-primary btn-find-a-knife-submit">
                 Search
               </button>
             </div>
           </form>
         </div>
       </section>
-      <!--/ Find a car form -->
+      <!--/ Find a knife form -->

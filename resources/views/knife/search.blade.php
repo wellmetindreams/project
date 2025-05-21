@@ -1,6 +1,6 @@
 <x-app-layout>
   <main>
-    <!-- Found Cars -->
+    <!-- Found Knifes -->
     <section>
       <div class="container">
         <div class="sm:flex items-center justify-between mb-medium">
@@ -25,7 +25,7 @@
         <div class="search-car-results-wrapper">
           <div class="search-cars-sidebar">
             <div class="card card-found-cars">
-              <p class="m-0">Found <strong>4,568</strong> cars</p>
+              <p class="m-0">Found <strong>{{ $knifeCount }}</strong> cars</p>
 
               <button class="close-filters-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width: 24px">
@@ -807,6 +807,6 @@
         </div>
       </div>
     </section>
-    <!--/ Found Cars -->
+    <!--/ Found Knifes -->
   </main>
 </x-app-layout>

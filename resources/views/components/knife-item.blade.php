@@ -1,6 +1,6 @@
-@props('knife')
-<div class="car-item card">
-              <a href="{{ route('knife.show', $knife->id) }}">
+@props(['knife'])
+<div class="knife-item card">
+              <a href="{{ route('knife.show', $knife) }}">
                 <img
                   src="{{ $knife->primaryImage->image_path}}"
                   alt=""
@@ -27,11 +27,11 @@
                     </svg>
                   </button>
                 </div>
-                <h2 class="knife-item-title">{{ $knife->material->name }} - {{ $knife->Maker->name }} {{ $knife->Collection->name }}</h2>
+                <h2 class="knife-item-title">{{ $knife->material->name }} - {{ $knife->maker->name }} {{ $knife->collection->name }}</h2>
                 <p class="knife-item-price">{{ $knife->price }}</p>
                 <hr />
                 <p class="m-0">
-                  <span class="knife-item-badge">{{ $knife->KnifeType->name}}</span>
+                  <span class="knife-item-badge">{{ $knife->knifeType->name}}</span>
                 </p>
               </div>
     </div>

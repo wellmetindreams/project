@@ -11,7 +11,7 @@
           <h2>Все ножи</h2>
           <div class="knife-items-listing">
             @foreach($knifes as $knife)
-              <x-knife-item: $knife/>
+              <x-knife-item :knife="$knife" />
             @endforeach
           </div>
         </div>
