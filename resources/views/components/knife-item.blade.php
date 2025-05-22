@@ -3,7 +3,7 @@
               <a href="{{ route('knife.show', $knife) }}">
                 <img
                   src="{{ $knife->primaryImage->image_path}}"
-                  alt=""
+                  alt="{{ $knife->maker->name }}"
                   class="knife-item-img rounded-t"
                 />
               </a>

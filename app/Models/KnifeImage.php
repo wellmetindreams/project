@@ -15,6 +15,6 @@ class KnifeImage extends Model
 
     public function Knife():BelongsTo
     {
-        return $this->belongsTo(Knife::class);
+        return $this->belongsTo(Knife::class)->where('position', 1);
     }
 }

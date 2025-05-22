@@ -37,8 +37,13 @@ class KnifeFactory extends Factory
             'weight'=>(int)fake()->randomFloat(2,1.5,3.5)*100,
             'material_id' => MaterialType::inRandomOrder()->first()->id,
             'country_id'=>Country::inRandomOrder()->first()->id,
-            'description'=>fake()->text(200)
+            'description'=>fake()->text(200),
+            'knife_images'=>function(array $attributes) {
+                return KnifeImage::factory()->count(5)->([
+                    'knife_id' => $attributes['id']
+                ]);
+            }
         ];
-        
+
     }
 }
