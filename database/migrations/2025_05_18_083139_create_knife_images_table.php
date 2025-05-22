@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('knife_id')->constrained('knife')->onDelete('cascade');
             $table->string('image_path');
             $table->integer('position');
+            $table->timestamps();
         });
     }
 

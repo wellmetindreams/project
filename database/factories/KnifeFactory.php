@@ -28,14 +28,14 @@ class KnifeFactory extends Factory
             'collection_id'=>function(array $attributes) {
                 return Collection::where('maker_id', $attributes['maker_id'])->inRandomOrder()->first()->id;
             },
-            'knife_type'=>KnifeType::inRandomOrder()->first()->id,
+            'knife_type_id'=>KnifeType::inRandomOrder()->first()->id,
             'price'=> ((int)fake()->randomFloat(2,5,100))*1000,
             'full_length'=>(int)fake()->randomFloat(2,3.5,5.5)*100,
             'blade_length'=>(int)fake()->randomFloat(2,1.5,2.5)*100,
             'blade_width'=>(int)fake()->randomFloat(2,1.5,4.5)*10,
             'butt_thickness'=>(int)fake()->randomFloat(2,1,2)*10,
             'weight'=>(int)fake()->randomFloat(2,1.5,3.5)*100,
-            'material' => MaterialType::inRandomOrder()->first()->id,
+            'material_id' => MaterialType::inRandomOrder()->first()->id,
             'country_id'=>Country::inRandomOrder()->first()->id,
             'description'=>fake()->text(200)
         ];

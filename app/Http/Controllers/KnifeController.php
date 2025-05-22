@@ -15,9 +15,9 @@ class KnifeController
         $knifes = Knife::with([
             'maker',
             'collection',
-            'material',
+            'material_id',
             'knifeType',
-            'country',
+            'country_id',
             'primaryImage'
             ])->get();
 

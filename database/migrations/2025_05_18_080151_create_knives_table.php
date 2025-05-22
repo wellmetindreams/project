@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('knife', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('maker_id')->constrained('makers');
-            $table->foreignId('collection_id')->constrained('collection');
-            $table->foreignId('knife_type')->constrained('knife_types');
+            $table->foreignId('maker_id')->constrained('makers')->onDelete('cascade');
+            $table->foreignId('collection_id')->constrained('collection')->onDelete('cascade');
+            $table->foreignId('knife_type_id')->constrained('knife_types')->onDelete('cascade');
+            $table->foreignId('material_id')->constrained('material_types')->onDelete('cascade');
+            $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
             $table->integer('price');
             $table->integer('full_length');
             $table->integer('blade_length');
             $table->integer('blade_width');
             $table->integer('butt_thickness');
             $table->integer('weight');
-            $table->string('material');
-            $table->foreignId('country_id')->constrained('countries');
             $table->longText('description');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

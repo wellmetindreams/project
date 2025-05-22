@@ -19,15 +19,15 @@ class Knife extends Model
     protected $fillable = [
         'maker_id',
         'collection_id',
-        'knife_type',
+        'knife_type_id',
         'price',
         'full_length',
         'blade_length',
         'blade_width',
         'butt_thickness',
         'weight',
-        'material',
-        'country',
+        'material_id',
+        'country_id',
         'description'
     ];
     
@@ -59,12 +59,12 @@ class Knife extends Model
 
     public function material(): BelongsTo
     {
-        return $this->belongsTo(MaterialType::class);
+        return $this->belongsTo(MaterialType::class, 'material_id');
     }
 
     public function country(): BelongsTo
 
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Country::class, 'country_id');
     }
 }
