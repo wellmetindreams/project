@@ -5,7 +5,7 @@
           <div class="auth-page-form">
             <div class="text-center">
               <a href="/">
-                <img src="/img/logoipsum-265.svg" alt="" />
+                <img src="/img/L_logo_knifestore.svg" alt="" />
               </a>
             </div>
             <h1 class="auth-page-title">Login</h1>
@@ -35,7 +35,7 @@
             </form>
           </div>
           <div class="auth-page-image">
-            <img src="/img/car-png-39071.png" alt="" class="img-responsive" />
+            <img src="/img/butcher-knife-logo.png" alt="" class="img-responsive" />
           </div>
         </div>
       </div>

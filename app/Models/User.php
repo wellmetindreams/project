@@ -47,4 +47,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function favouriteKnifes()
+    {
+        return $this->belongsToMany(Knife::class, 'favourite_knifes');
+    }
 }

@@ -12,9 +12,11 @@ class HomeController
     public function index()
     {   
         $knifes = Knife::where('created_at', '<',now())
+        ->with(['primaryImage', 'maker', 'country', 'material', 'knifeType', 'collection'])
         ->orderBy("created_at","desc")
-        ->limit(6)
+        ->limit(2)
         ->get();
+
         return view('home.index', ['knifes'=> $knifes]);
     }
 }

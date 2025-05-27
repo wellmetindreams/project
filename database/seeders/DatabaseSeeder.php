@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\KnifeType;
 use DB;
 use App\Models\Country;
@@ -10,30 +11,24 @@ use App\Models\MaterialType;
 use App\Models\User;
 use App\Models\Collection;
 use App\Models\Maker;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\MakerFactory;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
-
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
         DB::statement('TRUNCATE TABLE countries RESTART IDENTITY CASCADE');
         DB::statement('TRUNCATE TABLE material_types RESTART IDENTITY CASCADE');
         DB::statement('TRUNCATE TABLE collection RESTART IDENTITY CASCADE');
-        DB::statement('TRUNCATE TABLE makers RESTART IDENTITY CASCADE'); // если есть такая таблица
+        DB::statement('TRUNCATE TABLE makers RESTART IDENTITY CASCADE');
         DB::statement('TRUNCATE TABLE users RESTART IDENTITY CASCADE');
         DB::statement('TRUNCATE TABLE knife RESTART IDENTITY CASCADE');
         DB::statement('TRUNCATE TABLE knife_images RESTART IDENTITY CASCADE');
-
+        DB::statement('TRUNCATE TABLE favourite_knifes RESTART IDENTITY CASCADE');
 
         KnifeType::factory()->count(9)->sequence(
-             ['name' => 'Chef Knife'],
+            ['name' => 'Chef Knife'],
             ['name' => 'Paring Knife'],
             ['name' => 'Bread Knife'],
             ['name' => 'Santoku'],
@@ -79,7 +74,6 @@ class DatabaseSeeder extends Seeder
             ['name' => 'CPM-3V']
         )->create();
 
-
         $makers = [
             'Chris Reeve' => ['Sebenza Series', 'Inkosi Series'],
             'Benchmade' => ['Griptilian Series', 'Bugout Series'],
@@ -93,35 +87,45 @@ class DatabaseSeeder extends Seeder
             'Hogue Knives' => ['EX-A01 Series', 'EX-F01 Series'],
         ];
 
-            foreach($makers as $maker => $collections){
-                Maker::factory()
+        foreach ($makers as $maker => $collections) {
+            Maker::factory()
                 ->state(['name' => $maker])
-                ->has (
+                ->has(
                     Collection::factory()
-                    ->count(count($collections))
-                    ->sequence(...array_map(fn($collection)=>['name'=>$collection], $collections))
+                        ->count(count($collections))
+                        ->sequence(...array_map(fn($collection) => ['name' => $collection], $collections))
                 )
                 ->create();
-            }
+        }
 
-        User::factory()->count(3)->create();
-
-        Knife::factory()
-            ->count(10)
+        // 1. Создаём ножи с изображениями
+        $knives = Knife::factory()
+            ->count(50)
             ->for(KnifeType::inRandomOrder()->first())
             ->for(Country::inRandomOrder()->first())
             ->for(MaterialType::inRandomOrder()->first(), 'material')
-            ->for(Maker::inRandomOrder()->first(),'maker')
-            ->for(Collection::inRandomOrder()->first(),'collection')
+            ->for(Maker::inRandomOrder()->first(), 'maker')
+            ->for(Collection::inRandomOrder()->first(), 'collection')
             ->has(
                 KnifeImage::factory()
-                ->count(5)
-                ->sequence(fn(Sequence $sequence) => ['position' => $sequence->index % 5+ 1]),
+                    ->count(5)
+                    ->state(new Sequence(
+                        fn(Sequence $sequence) => [
+                            'position' => $sequence->index % 5 + 1,
+                            'image_path' => 'https://dummyimage.com/600x400/000/fff'
+                        ]
+                    )),
                 'images'
             )
-        ->create();
+            ->create();
 
+        // 2. Создаём пользователей
+        $users = User::factory()->count(3)->create();
+
+        // 3. Привязываем случайные ножи к пользователям как любимые (без создания изображений)
+        foreach ($users as $user) {
+            $favouriteKnives = $knives->random(5);
+            $user->favouriteKnifes()->attach($favouriteKnives);
+        }
     }
-
-   
 }

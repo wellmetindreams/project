@@ -1,7 +1,7 @@
 <header class="navbar">
       <div class="container navbar-content">
         <a href="/" class="logo-wrapper">
-          <img src="/img/logoipsum-265.svg" alt="Logo" />
+          <img src="/img/L_logo_knifestore.svg" alt="Logo" />
         </a>
         <button class="btn btn-default btn-navbar-toggle">
           <svg
@@ -20,7 +20,7 @@
           </svg>
         </button>
         <div class="navbar-auth">
-          <a href="{{ route('knife.create') }}" class="btn btn-add-new-car">
+          {{-- <a href="{{ route('knife.create') }}" class="btn btn-add-new-car">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -35,9 +35,7 @@
                 d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-
-            Add new Car
-          </a>
+          </a> --}}
           <div class="navbar-menu" tabindex="-1">
             <a href="javascript:void(0)" class="navbar-menu-handler">
               My Account
@@ -58,10 +56,7 @@
             </a>
             <ul class="submenu">
               <li>
-                <a href="my_cars.html">My Cars</a>
-              </li>
-              <li>
-                <a href="watchlist.html">My Favourite Cars</a>
+                <a href="watchlist.html">My Favourite Knives</a>
               </li>
               <li>
                 <form action="#" method="post">

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Knife;
 use Illuminate\Http\Request;
-
+use App\Models\User;
 class KnifeController
 {
     /**
@@ -13,12 +13,12 @@ class KnifeController
     public function index()
     {
         $knifes = Knife::with([
+            'primaryImage',
             'maker',
             'collection',
-            'material_id',
+            'material',
             'knifeType',
-            'country_id',
-            'primaryImage'
+            'country'
             ])->get();
 
         return view('knife.index', compact('knifes'));
@@ -46,7 +46,7 @@ class KnifeController
      */
     public function show(Knife $knife)
     {
-        return view('knife.show');
+        return view('knife.show', ['knife' => $knife]);
     }
 
     /**
@@ -75,13 +75,22 @@ class KnifeController
 
     public function search()
     {
-        $query = KnifeController::where('created_at', '<', now())
+        $query = Knife::where('created_at', '<', now())
+        ->with(['primaryImage', 'maker', 'country', 'material', 'knifeType', 'collection'])
         ->orderBy('created_at','desc');
 
-        $knifeCount = $query->count();
+       $knifes = $query->paginate(9);
 
-        $knifes = $query->limit(6)->get();
+        return view('knife.search', ['knifes' => $knifes]);
+    }
 
-        return view('knife.search', ['knifes' => $knifes, 'knifeCount' => $knifeCount]);
+    public function watchlist()
+    {
+        $knifes = User::find(1)
+        ->favouriteKnifes()
+        ->with(['primaryImage', 'maker', 'country', 'material', 'knifeType', 'collection'])
+        ->paginate(6);
+        
+        return view('knife.watchlist', ['knifes' => $knifes]);
     }
 }

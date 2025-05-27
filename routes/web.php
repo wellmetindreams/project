@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/knife/search', [KnifeController::class,'search'])->name('knife.search');
-Route::resource('knife', KnifeController::class);
-
 Route::get('/signup', [SignupController::class,'create'])->name('signup');
 Route::get('/login', [LoginController::class,'create'])->name('login');
+
+Route::resource('knife', KnifeController::class);
+
+Route::get('/knife/search', [KnifeController::class,'search'])->name('knife.search');
+
+Route::get('/knife/watchlist', [KnifeController::class,'watchlist'])->name('knife.watchlist');
 
 Route::get('/user/profile/{username}', function (string $username) {
     return "Hello, $username!";
