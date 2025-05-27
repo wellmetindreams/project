@@ -10,29 +10,36 @@
             </div>
             <h1 class="auth-page-title">Login</h1>
 
-            <form action="" method="post">
-              <div class="form-group">
-                <input type="email" placeholder="Your Email" />
-              </div>
-              <div class="form-group">
-                <input type="password" placeholder="Your Password" />
-              </div>
-              <div class="text-right mb-medium">
-                <a href="/password-reset.html" class="auth-page-password-reset"
-                  >Reset Password</a
-                >
-              </div>
+            <form action="{{ route('login.store') }}" method="POST">
+    @csrf
 
-              <button class="btn btn-primary btn-login w-full">Login</button>
+    @if ($errors->has('email'))
+        <div class="text-danger mb-2">
+            {{ $errors->first('email') }}
+        </div>
+    @endif
 
-              <div class="form-group" style="margin-top: 1rem">
-                <x-google-button/>
-              </div>
-              <div class="login-text-dont-have-account">
-                Don't have an account? -
-                <a href="/signup.html"> Click here to create one</a>
-              </div>
-            </form>
+    <div class="form-group">
+        <input type="email" name="email" placeholder="Your Email" required value="{{ old('email') }}" />
+    </div>
+    <div class="form-group">
+        <input type="password" name="password" placeholder="Your Password" required />
+    </div>
+    <div class="text-right mb-medium">
+        <a href="{{ route('password.request') }}" class="auth-page-password-reset">Reset Password</a>
+    </div>
+
+    <button class="btn btn-primary btn-login w-full">Login</button>
+
+    <div class="form-group" style="margin-top: 1rem">
+        <x-google-button/>
+    </div>
+    <div class="login-text-dont-have-account">
+        Don't have an account? -
+        <a href="{{ route('signup') }}"> Click here to create one</a>
+    </div>
+</form>
+
           </div>
           <div class="auth-page-image">
             <img src="/img/butcher-knife-logo.png" alt="" class="img-responsive" />

@@ -1,30 +1,31 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use \App\Http\Controllers\KnifeController;
+use App\Http\Controllers\KnifeController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/signup', [SignupController::class,'create'])->name('signup');
-Route::get('/login', [LoginController::class,'create'])->name('login');
+// Ножи
+Route::get('/knife', [KnifeController::class, 'index'])->name('knife.index');
+Route::get('/knife/search', [KnifeController::class, 'search'])->name('knife.search');
+Route::get('/knife/{knife}', [KnifeController::class, 'show'])->name('knife.show');
 
-Route::resource('knife', KnifeController::class);
-
-Route::get('/knife/search', [KnifeController::class,'search'])->name('knife.search');
-
-Route::get('/knife/watchlist', [KnifeController::class,'watchlist'])->name('knife.watchlist');
-
-Route::get('/user/profile/{username}', function (string $username) {
-    return "Hello, $username!";
+Route::middleware(['auth'])->group(function () {
+    Route::get('/knife/create', [KnifeController::class, 'create'])->name('knife.create');
+    Route::post('/knife', [KnifeController::class, 'store'])->name('knife.store');
+    Route::get('/knife/watchlist', [KnifeController::class, 'watchlist'])->name('knife.watchlist');
 });
 
-Route::get('/current/user', function () {
-    return redirect()->route('profile');
-});    
+// Регистрация
+Route::get('/signup', [SignupController::class, 'create'])->name('signup');
+Route::post('/signup', [SignupController::class, 'store'])->name('signup.store');
 
-Route::get('{lang}/product/{id}', function (string $lang, int $id) {
-    //...
-})->where('lang', '[a-z]{2}')->where('id', '[0-9]{4,}');
+// Авторизация
+Route::get('/login', [LoginController::class, 'create'])->name('login');
+Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+
+// Выход
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
