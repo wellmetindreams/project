@@ -23,14 +23,14 @@ class SignupController extends Controller
      */
     public function store(Request $request)
     {
+        
         // Валидация данных
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'last_name' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:12|unique:users,phone',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:6|confirmed',
+    ]);
+
 
         // Создание пользователя
         $user = User::create([
@@ -40,6 +40,10 @@ class SignupController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        
+        if (!$user) {
+            abort(500, 'Ошибка при создании пользователя');
+        }
 
         // Авторизация пользователя
         Auth::login($user);

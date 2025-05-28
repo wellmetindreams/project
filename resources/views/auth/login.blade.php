@@ -11,7 +11,7 @@
             <h1 class="auth-page-title">Login</h1>
 
             <form action="{{ route('login.store') }}" method="POST">
-    @csrf
+            @csrf
 
     @if ($errors->has('email'))
         <div class="text-danger mb-2">

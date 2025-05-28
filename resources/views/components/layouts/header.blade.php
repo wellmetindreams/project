@@ -56,13 +56,16 @@
             </a>
             <ul class="submenu">
               <li>
-                <a href="watchlist.html">My Favourite Knives</a>
+                <a href="{{ route('knife.watchlist') }}">My Favourite Knives</a>
               </li>
+            @auth
               <li>
-                <form action="#" method="post">
-                  <button>Logout</button>
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                    <button type="submit" class="btn btn-logout">Logout ({{ Auth::user()->name }})</button>
                 </form>
               </li>
+            @endauth
             </ul>
           </div>
           <a href="{{ route('signup') }}" class="btn btn-primary btn-signup">

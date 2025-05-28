@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name ="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title }} | {{ config('app.name', 'Laravel') }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,19 +21,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css"
-      rel="stylesheet"
-    /> -->
-
     <link rel="stylesheet" href="/css/app.css" />
-    <!-- <link rel="stylesheet" href="css/output.css" /> -->
   </head>
-  <body @if($bodyClass)class="{{ $bodyClass }}"@endif>
-      
-{{ $slot }}
+  <body @if($bodyClass) class="{{ $bodyClass }}" @endif>
 
-        <script
+    {{ $slot }}
+
+    <script
       src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.js"
       integrity="sha512-XJgPMFq31Ren4pKVQgeD+0JTDzn0IwS1802sc+QTZckE6rny7AN2HLReq6Yamwpd2hFe5nJJGZLvPStWFv5Kww=="
       crossorigin="anonymous"

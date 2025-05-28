@@ -8,7 +8,7 @@
             @if ($knifes->total()>0)
               <div class="pagination-summary">
                 <p> Showing {{$knifes->firstItem()}} to
-                  {{$knifes->lastItem()}} of {{$knifs->total()}} results
+                  {{$knifes->lastItem()}} of {{$knifes->total()}} results
               </div>
             @endif
           </div>
@@ -21,6 +21,6 @@
           {{$knifes->onEachSide(1)->links()}}
         </div>
       </section>
-      <!--/ New Cars -->
+      <!--/ New Knives-->
     </main>
 </x-app-layout>
